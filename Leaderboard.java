@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 
 class Leaderboard {
     ArrayList<Player> leaderboard = new ArrayList<>();
@@ -21,6 +22,7 @@ class Leaderboard {
     }
 
     public void sortPlacements() {
+        /*old approach
         for (Player currentPlayer : this.leaderboard) {
             for (Player comparedPlayer : this.leaderboard) {
                 if (currentPlayer != comparedPlayer) {
@@ -37,18 +39,20 @@ class Leaderboard {
                     }
                 }
             }
+        }*/
+       Collections.sort(leaderboard);
+       int givenPos = 1;
+        for (Player p: leaderboard) {
+            p.placement = givenPos;
+            givenPos++;
         }
     }
 
     @Override
     public String toString() {
         String returned = "";
-        for (int currentPos = 1; currentPos < leaderboard.size() + 1; currentPos++) {
-            for (Player p : leaderboard) {
-                if (p.placement == currentPos) {
-                    returned += p.toString();
-                }
-            }
+        for (Player p : leaderboard) {
+            returned += p.toString();
         }
         return returned;
     }
@@ -63,4 +67,7 @@ class Leaderboard {
         return player;
     }
 
+    public void boardChange(String playerName) {
+
+    }
 }
