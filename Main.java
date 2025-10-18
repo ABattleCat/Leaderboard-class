@@ -8,7 +8,6 @@ class Main {
         L.addPlayer("Bobby");
         L.addPlayer("Bobbobby");
         System.out.println(L.toString());
-        L.boardChange("Bobby", 100);
         System.out.println(L.toString());
     }
 
