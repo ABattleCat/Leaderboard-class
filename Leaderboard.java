@@ -48,7 +48,6 @@ class Leaderboard {
         }
     }
 
-    @Override
     public String toString() {
         String returned = "";
         for (Player p : leaderboard) {
@@ -67,7 +66,11 @@ class Leaderboard {
         return player;
     }
 
-    public void boardChange(String playerName) {
-
+    public void boardChange(String playerName, String victimName, int scoreChange) {
+        Player p = findPlayerByName(playerName);
+        p.playerUpdate(scoreChange);
+        Player v = findPlayerByName(victimName);
+        v.playerUpdate(-scoreChange);
+        sortPlacements();
     }
 }
