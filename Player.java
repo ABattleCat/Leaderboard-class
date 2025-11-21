@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Player implements Comparable<Player> {
     public String name;
@@ -12,9 +13,10 @@ public class Player implements Comparable<Player> {
     public int maxhealth = level * 20 + 80;
     public int turns = 5;
     public int startTurns = level + 5;
+    public boolean turn = false;
     public boolean inCombat = false;
     public Player target = null;
-    public ArrayList<> inventory = new ArrayList<>();
+    public HashMap<ArrayList, Integer> inventory = new HashMap<>();
 
     public Player(String Name, int Placement) {
         this.name = Name;
@@ -42,5 +44,15 @@ public class Player implements Comparable<Player> {
     @Override
     public String toString() {
         return "\n" + this.placement + ": " + "deaths - " + this.deaths + " | " + "lvl." + this.level + " | " + "kills - " + this.kills + " | " + this.score + " | " + this.name;
+    }
+
+    public Weapon getWeapon(String name) {
+        Item item = null;
+        for (Item i : this.inventory) {
+            if (i.baseName.equals(name)) {
+                item = i;
+                break;
+            }
+        }
     }
 }

@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 
 class Leaderboard {
     ArrayList<Player> leaderboard = new ArrayList<>();
@@ -109,8 +110,13 @@ class Leaderboard {
     public void attack(String playerName, String victimName, String weapon) {
         Player p = PlayerFoundByName(playerName);
         Player v = PlayerFoundByName(victimName);
-        p.health += 1;
-        //v.health -= 
+        Item weapon = p.getItem(weapon);
+        if (p.turn) {
+            float crit = (float)(Math.random()*1001)/(float)10f;
+            if (crit <= item.critChance) {
+                
+            }
+        }
     }
     
     public void enterCombat(String attacker, String victim) {
