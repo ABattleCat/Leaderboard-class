@@ -1,18 +1,18 @@
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Random;
+//import java.util.Random;
 
 class Leaderboard {
     ArrayList<Player> leaderboard = new ArrayList<>();
-    ArrayList<Weapon> weapons = new ArrayList<>();
+    ArrayList<Weapon> ImplementedWeapons = new ArrayList<>();
 
     public void addPlayer (String name) {
         int place = this.leaderboard.size() + 1;
         this.leaderboard.add(new Player(name, place));
     }
 
-    public void addWeapon(String name, int baseDamage, int turnsCost) {
-        this.weapons.add(new Weapon(name, baseDamage, turnsCost));
+    public void addWeapon(String name, int baseDamage, int turnsCost, int critChance, int sideEffectID) {
+        this.ImplementedWeapons.add(new Weapon(name, baseDamage, turnsCost, critChance, sideEffectID));
     }
 
     public void sortPlacements() {
@@ -63,7 +63,7 @@ class Leaderboard {
 
     public Weapon WeaponFoundByName(String name) {
         Weapon weapon = null;
-        for (Weapon w: this.weapons) {
+        for (Weapon w: this.ImplementedWeapons) {
             if (w.baseName.equals(name)) {
                 weapon = w;
             }
@@ -107,22 +107,35 @@ class Leaderboard {
         PlayerFoundByName(playerName).level++;
     }
 
-    public void attack(String playerName, String victimName, String weapon) {
+    /*public void attack(String playerName, String victimName, String weapon) {
         Player p = PlayerFoundByName(playerName);
         Player v = PlayerFoundByName(victimName);
-        Item weapon = p.getItem(weapon);
+        Weapon weapon = p.
         if (p.turn) {
             float crit = (float)(Math.random()*1001)/(float)10f;
             if (crit <= item.critChance) {
                 
             }
         }
-    }
+    }*/
     
     public void enterCombat(String attacker, String victim) {
         PlayerFoundByName(attacker).inCombat = true;
         PlayerFoundByName(attacker).target = PlayerFoundByName(victim);
         PlayerFoundByName(victim).inCombat = true;
         PlayerFoundByName(victim).target = PlayerFoundByName(attacker);
+    }
+
+    public void equipWeapon(String weaponName, Player p) {
+        Weapon targetWeapon = null;
+        for (Weapon w : ImplementedWeapons) {
+            if (w.baseName.equals(weaponName)) {
+                targetWeapon = w;
+                break;
+            }
+        }
+        if (targetWeapon != null) {
+            p.equippedWeapon = targetWeapon;
+        }
     }
 }

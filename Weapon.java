@@ -1,4 +1,7 @@
-class Weapon extends Item{
+class Weapon{
+public String baseName;
+public String fullName;
+public int sideEffectID;
 public int baseDamage;
 public int level = 1;
 public int turnsCost;
